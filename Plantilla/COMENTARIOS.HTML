@@ -1,0 +1,208 @@
+{% extends 'BASE.HTML' %}
+
+
+{% block Comentarios %}
+
+<div class="fondo-input-comentarios"></div>
+ <div class="Escribir-comentario">
+   <h2>&nbsp; ++comentarios</h2>
+   <span class="icon-escribircomentario icon-weixin"></span>
+ </div>
+ <div class="input-comentarios"> {% if user.is_authenticated %} {% endif %}
+   <form class="" method="POST">
+     {% csrf_token %}
+   {{ formulario.as_p }}
+   <textarea name="text_del_comentario" id="id_text_del_comentario" rows="8" cols="33"></textarea>
+   <button type="submit" class="myButton" name="button">Comentar</button>
+   </form>
+ </div>
+
+
+ <div class="header-comentario">
+ <h1>Tu opinion o comentario es bienvenido</h1>
+<div class="linea_AZUL"></div>
+ </div>
+
+   {% for textos in textos %}
+    <section>
+      <h1 class="icon-users-outline margin-iz15px"> &nbsp; &nbsp; {{ textos.text_usuarios_comentarios}}</h1>
+      <article>
+        <p>{{ textos.text_del_comentario}}</p><br>
+        <h3 class="icon-calendar">&nbsp; {{ textos.fecha_de_comentario}}</h3>
+      </article>
+     </section>
+   {% endfor %}
+
+
+ <style media="screen">
+ section{
+   width: 50%;
+   margin-left: 3%;
+   margin-top: 25px;
+   float: left;
+   color: rgb(238, 238, 238);
+   padding: 20px 15px;
+   -webkit-box-shadow: 10px 10px 14px 0px rgba(181,181,181,1);
+   -moz-box-shadow: 10px 10px 14px 0px rgba(181,181,181,1);
+   box-shadow: 10px 10px 14px 0px rgba(181,181,181,1);
+   background-color: rgb(161, 159, 159);
+ }
+ article{
+text-align: center;
+ }
+ article>p{
+width: 100%;
+float: left;
+padding: 5px;
+ }
+  .margin-iz15px{
+    margin-left: 15px;
+    padding-left: 10px;
+  }
+
+   .header-comentario{
+     width: 100%;
+     float: right;
+     text-align: center;
+     background-color: rgb(216, 231, 235);
+     padding: 30px 150px;
+     height: 100px;
+     margin-bottom: 15px;
+     color: rgb(85, 85, 85);
+   }
+   .crear-comentario > h1{
+     text-align: center;
+     padding-top: 10px;
+     float: right;
+     width: 60%;
+     margin-top: 20px;
+     margin-top: 5px;
+     margin-left: 10px;
+     z-index: 60;
+   }
+  .icon-escribircomentario {
+      color: rgb(255, 255, 255);
+      font-size: 30px;
+      float: right;
+      text-align: center;
+      margin-top: 3px;
+      margin-right: 35px;
+      z-index: 60;
+   }
+   .icon-escribircomentario:hover {
+       color: rgb(255, 255, 255);
+       transform: scale3d(1);
+       cursor: pointer;
+
+    }
+    .Escribir-comentario{
+      position: fixed;
+      right: 28px;
+      bottom: 0px;
+      color:rgba(212, 212, 212, 1);
+      width: 320px;
+      height: 40px;
+      background-color: rgb(153, 153, 153);
+      z-index: 60;
+      -webkit-border-radius: 20px;
+      -webkit-border-bottom-right-radius: 3px;
+      -webkit-border-bottom-left-radius: 3px;
+      -moz-border-radius: 20px;
+      -moz-border-radius-bottomright: 3px;
+      -moz-border-radius-bottomleft: 3px;
+      border-radius: 20px;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    .Escribir-comentario > h2{
+      width: 60%;
+      text-align: center;
+      float: left;
+      color: rgb(255, 255, 255);
+    }
+    .Escribir-comentario:hover{
+      color: rgb(255, 255, 255);
+      transform: scale(1.05);
+      cursor: pointer;
+      margin-bottom: 2px;
+    }
+    .input-comentarios{
+      width: 320px;
+      border: 1px solid rgb(201, 201, 201);
+      background-color: rgb(244, 244, 244);
+      height: 300px;
+      position: fixed;
+      bottom: 0px;
+      right: 28px;
+      padding: 25px;
+      z-index: 60;
+    }
+    .input-comentarios input{
+      width: 96%;
+      height: 25px;
+      font-size: 15px;
+      text-align: center;
+      height: 35px;
+      background-color: rgb(170, 170, 170);
+      border: 0px;
+    }
+    .fondo-input-comentarios{
+      background-color: rgb(20, 145, 185);
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      z-index: 5;
+      opacity: 0.2;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+            z-index: 60;
+    }
+    .comentario-icon-caja{
+      color: rgb(170, 170, 170);
+    }
+ </style>
+ <script type="text/javascript">
+$("label[for='id_link_imagen_izquierda']").hide();
+$('#id_link_imagen_izquierda').hide();
+$("input[id='id_text_del_comentario']").removeAttr('required').hide();
+$("label[for='id_text_usuarios_comentarios']").html('<span class="comentario-icon-caja icon-rocket">&nbsp; Nombre/{% if user.is_authenticated %} {{ user.username }} {% else %}Usuario{% endif %}');
+$("label[for='id_text_del_comentario']").html('<span class="comentario-icon-caja icon-attach">&nbsp; Comentario:');
+
+
+
+
+
+
+
+
+
+
+
+ $('.fondo-input-comentarios').hide();
+  $('.input-comentarios').hide();
+var abre;
+var enganche = 'true';
+   $('.Escribir-comentario').on('click',function() {
+     if (enganche == 'true') {
+       $('.Escribir-comentario').css({
+         'bottom':'300px'
+       })
+       $('.input-comentarios').show();
+       $('.fondo-input-comentarios').show();
+        enganche = 'false';
+     }
+      else if (enganche == 'false'){
+       $('.Escribir-comentario').css({
+         'bottom':'0px'
+       })
+       $('.input-comentarios').hide();
+       $('.fondo-input-comentarios').hide();
+       enganche = 'true';
+     }
+   })
+
+
+ </script>
+{% endblock %}

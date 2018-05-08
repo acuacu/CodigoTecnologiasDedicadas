@@ -1,0 +1,399 @@
+{% extends 'BASE.HTML' %}
+
+{% block Usuario %}
+{% if not DatosDelUsuario %}
+<div class="content-Formulario">
+  <form class="frm" action="" method="post">
+    <input type="hidden" name="NuevoUsuario" value="NuevoUsuario">
+          {% csrf_token %}
+    <button type="submit" name="button">Comenzar</button>
+  </form>
+</div>
+
+<style media="screen">
+
+  .frm{
+    width: 100%;
+    height: 100%;
+    float: left;
+    background: rgb(104, 195, 193);
+  }
+  button{
+    padding: 15px 25px;
+    width: 100%;
+    text-align: center;
+    background-color:#ba2121;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+  }
+  .frm>button:hover{
+    background-color:#a61b1b;
+    cursor: pointer;
+  }
+</style>
+
+{% else %}
+
+
+{% for DatosDelUsuario in DatosDelUsuario %}
+<div class="content-Usuario">
+  <div class="banner">
+    <style media="screen">
+      .banner{
+        background-color: rgba(202, 203, 202, 1);
+        background-image: url('{{ DatosDelUsuario.FotoDePortada }}');
+        background-size: 100% 100%;
+        background-attachment: fixed;
+      }
+    </style>
+    <img class="foto_de_perfil" src="{{ DatosDelUsuario.FotoDePerfil }}" alt="">
+  </div>
+
+
+<div class="content_Titulo">
+  <h2> ¡Hola, {{ user.username }}! </h2>
+</div>
+<div class="content_Salir">
+  <a href="/Salir">Cerrar Secion</a>
+</div>
+<div class="content_manejador">
+
+  <div class="content_herramienta">
+<h3>Currículum</h3>
+  <p>
+    {% if not curriculum %}<a href="/Curriculum/Crear/">Crear</a>{% endif %}
+    {% if curriculum %}  <a href="/Curriculum/1/"> Ver</a> <br>
+    <a href="/Curriculum/"> Editar</a><br>
+    <a class="r" href="/Curriculum/Eliminar/">Eliminar</a>{% endif %}
+  </p>
+  </div>
+  <div class="content_herramienta">
+<h3>Tarjetas</h3>
+  <p>
+    {% if not tarjeta %}<a  class="X" href="#">Crear</a>{% endif %}
+    {% if tarjeta %}  <a href="#"> Ver</a> <br>
+    <a href="#"> Editar</a><br>
+    <a class="r" href="#">Eliminar</a>{% endif %}
+  </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style media="screen">
+  .content_manejador{
+    width: 55%;
+    margin-left: 5%;
+    float: left;
+    padding: 25px 5px;
+    margin-top: 50px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .content_Titulo{
+    width: 30%;
+    margin-left: 5%;
+    float: left;
+    text-align: center;
+    margin-right: 20%;
+    padding: 25px 5px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 1);
+  }
+  .content_Salir{
+    width: 30%;
+    margin-right: 5%;
+    float: right;
+    text-align: center;
+    margin-top: 20px;
+    background-color:rgb(58, 162, 215);
+  }
+  .content_Salir>a{
+    float: left;
+    width: 100%;
+    height: 100%;
+    padding: 25px 5px;
+    color: rgb(240, 239, 236);
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .content_herramienta{
+    margin-bottom: 20px;
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+  }
+  .content_manejador > .content_herramienta>h3{
+    width: 25%;
+    margin-left: 5%;
+    margin-top: -20px;
+    font-size: 20px;
+    position: relative;
+    border-bottom: 3px solid rgb(70, 173, 191);
+    padding-left: 15px;
+    top: 50%;
+    transition: all 0.8s ease 0s;
+  }
+  .content_manejador > .content_herramienta>h3:hover{
+    font-size: 23px;
+    margin-top: -30px;
+    cursor: pointer;
+    border-bottom: 3px solid rgb(191, 70, 70);
+  }
+  .content_manejador > .content_herramienta > p{
+    width: 70%;
+    float: right;
+    font-size: 19px;
+    padding: 25px;
+    border: 2px solid rgb(70, 173, 191);
+    line-height: 23px;
+  }
+    .content_manejador > .content_herramienta > p>a{
+      width: 100%;
+      padding: 18px 25px;
+      background-color: #5cb85c;
+      text-decoration: none;
+      color: rgb(247, 247, 247);
+      text-align: center;
+      margin-top: 5px;
+      float: left;
+      transition: all 0.8s ease 0s;
+    }
+    .content_manejador > .content_herramienta > p>a:hover{
+      background-color: #5cb8b5;
+    }
+    .content_manejador > .content_herramienta > p>.r{
+      background-color: #ba2121;
+      font-size: 20px;
+    }
+    .content_manejador > .content_herramienta > p>.X:hover{
+      background-color: rgb(31, 34, 36);
+      cursor: no-drop;
+    }
+</style>
+
+
+
+
+<div class="content-Formulario">
+    <p>Con estos datos nos comunicamos con usted.</p>
+    <form method="post">
+      <input type="hidden" name="EditarDatosPersonales" value="EditarDatosPersonales">
+            {% csrf_token %}
+      <p>Foto</p>
+      <input type="text" name="FotoDePerfil" value="{{ DatosDelUsuario.FotoDePerfil }}" placeholder="{{ DatosDelUsuario.FotoDePerfil }}" required >
+      <p>Banner</p>
+      <input type="text" name="FotoDePortada" value="{{ DatosDelUsuario.FotoDePortada }}" placeholder="{{ DatosDelUsuario.FotoDePortada }}" required >
+      <p>Telefono Celular</p>
+      <input type="text" name="NumeroDeTelefono" value="{{ DatosDelUsuario.NumeroDeTelefono }}" placeholder="{{ DatosDelUsuario.NumeroDeTelefono }}" required >
+      <p>Soy profecional en...</p>
+      <input type="text" name="DeQueTrabajo" value="{{ DatosDelUsuario.DeQueTrabajo }}" placeholder="{{ DatosDelUsuario.DeQueTrabajo }}" required >
+      <p>¿Deseo un segundo factor de autentificación?</p>
+      <input type="checkbox" name="SegundoFactorDeAutentificacion" {% if DatosDelUsuario.SegundoFactorDeAutentificacion  %} checked {% endif %}>
+      <br>
+      <button type="submit" name="button">Guardar</button>
+    </form>
+    <p>Cambiar contraseña.</p>
+    <form method="post">
+      <input type="hidden" name="CambiarContraseña" value="CambiarContraseña">
+            {% csrf_token %}
+      <p>Contraseña:</p>
+      <input type="password" name="passwordAntiguo" placeholder="Antigua contraseña" required >
+      <p>Nueva contraseña</p>
+      <input type="password" name="passwordNuevo" placeholder="Contraseña nueva" required >
+      <br>
+      <button type="submit" name="button">Guardar</button>
+    </form>
+  </div>
+
+
+<!-- 
+  <div class="content_manejador">
+    <h2>Soporte</h2>
+    <form method="post">
+        <input type="hidden" name="" value="">
+        {% csrf_token %}
+
+        <select name="Asunto">
+          <option value="volvo">Reportar errores en la web</option>
+          <option value="saab">Reportar un poblema en cuenta</option>
+          <option value="mercedes">Reportar un pago</option>
+          <option value="audi">Otras consultas</option>
+        </select>
+      <textarea name="name" rows="8" cols="60"></textarea><br>
+      <button type="submit" name="button">Enviar</button>
+    </form>
+    <br>
+    <hr>
+    <div class="Tiquets">
+      {% for Soporte in Soporte %}
+      {% if Soporte.Remitente == 'Administrador' %}
+      <div class="Respuesta-izquirda">
+        Remitente: {{ Soporte.Remitente }}<br>
+        Asunto : {{ Soporte.Asunto }} <br>
+      <p>Mensaje :  {{ Soporte.Mensaje }}</p><br>
+         {{ Soporte.FechaDeCreacion }}
+      </div>
+      {% else %}
+      <div class="Remitente-Derecha">
+        Remitente: {{ Soporte.Remitente }}<br>
+        Asunto : {{ Soporte.Asunto }} <br>
+      <p>Mensaje :  {{ Soporte.Mensaje }}</p><br>
+         {{ Soporte.FechaDeCreacion }}
+      </div>
+      {% endif %}
+      {% endfor %}
+      </div>
+
+
+    </div>
+-->
+  </div>
+</div>
+
+
+
+<style media="screen">
+.Tiquets{
+  width: 100%;
+  height: 300px;
+  float: left;
+  margin-top: 50px;
+  background-color: rgb(220, 220, 224);
+  border: 2px solid rgb(197, 197, 198);
+  overflow: scroll;
+}
+.Respuesta-izquirda{
+width: 70%;
+padding: 5px 20px;
+float: left;
+background-color: rgb(30, 180, 208);
+color: rgb(242, 242, 242);
+}
+.Remitente-Derecha{
+width: 70%;
+padding: 5px 20px;
+float: right;
+background-color: rgb(162, 117, 57);
+color: rgb(242, 242, 242);
+}
+
+
+
+
+
+
+button{
+  padding: 15px 25px;
+  width: 100%;
+  text-align: center;
+  background-color:#ba2121;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+}
+.frm>button:hover{
+  background-color:#a61b1b;
+  cursor: pointer;
+}
+
+  .banner{
+    width: 100%;
+    height: 250px;
+    float: left;
+    border-bottom: 2px solid rgb(70, 173, 191);
+  }
+  .foto_de_perfil{
+    float: left;
+    width: 20%;
+    position: absolute;
+    min-height: 100px;
+    right: 40%;
+    top: 100px;
+    background-color: rgba(202, 203, 202, 1);
+    border: 2px solid rgb(70, 173, 191);
+  }
+
+.content-Formulario>p{
+  font-size: 13px;
+  padding: 5px;
+  width: 80%;
+  margin-left: 10%;
+  float: left;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgb(72, 192, 221);
+  margin-top: 10px;
+  text-align: center;
+  border-bottom: 2px solid rgb(208, 231, 244);
+}
+.content-Usuario{
+  width: 100%;
+  padding-bottom: 35px;
+  float: left;
+  margin-bottom: -15px;
+  background-color:rgba(10, 16, 36, 1);
+}
+input:focus{
+  outline: 0px;
+}
+  .content-Formulario{
+    width: 30%;
+    float: right;
+    margin-right: 5%;
+    padding-bottom: 25px;
+    margin-top: 50px;
+    background-color: rgb(255, 255, 255);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+  }
+.content-Formulario>form{
+  width: 90%;
+  margin-left: 5%;
+  height: 100%;
+  float: left;
+  background-color: rgb(255, 255, 255);
+  padding-top: 15px;
+  margin-bottom: 55px;
+}
+.content-Formulario>form>input{
+  float: left;
+  width: 100%;
+  height: 35px;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: rgb(252, 252, 252);
+  font-size: 16px;
+  background-color: #878887;
+  border: 1px solid rgb(87, 86, 85);
+  margin-bottom: 5px;
+}
+.content-Formulario>form>input::before{
+  border: 0;
+}
+
+.Alerta{
+  display: none;
+}
+</style>
+
+
+
+{% endfor %}
+{% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+{% include "base/head.html" %}
+
+  <body class="body">
+      {% include "alertas/LaAplicacionNoEstaLista.html" %}
+    <div id="contenedor_carga">
+      <div class="TD"></div>
+      <div class="carga"></div>
+      <div class="logo-2"></div>
+    </div>
+   <div class="content">
+
+<!-- Bloques de Inicio-->
+{% block Creador_de_curriculums %}{% endblock %}
+{% block Curriculum %}{% endblock %}
+{% block Usuario %}{% endblock %}
+{% block contenido_inicio %}{% endblock %}
+{% block IniciarSesión %}{% endblock %}
+{% block RecuperarContraseña %}{% endblock %}
+{% block Registrar %}{% endblock %}
+{% block Comentarios %}{% endblock %}
+{% block Soporte %}{% endblock %}
+<!--  bloques de Usuario -->
+
+{% block content %}{% endblock %}
+
+
+{% include "footer/footer.html" %}
+</div><!-- FIN CONTENT -->
+{% include "base/javascriptBase.html" %}
+
+  </body>
+</html>

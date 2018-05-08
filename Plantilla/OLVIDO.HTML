@@ -1,0 +1,143 @@
+{% extends 'BASE.HTML' %}
+
+
+{% block RecuperarContraseña %}
+    {% if user.is_authenticated %}
+    <script type="text/javascript">
+      location.href ="/Usuario";
+    </script>
+    {% else %}
+      <div class="sectionRecuperacion">
+                      <article class="caja">
+                        <h1>Restablecer la contraseña</h1>
+                        <p>Se enviara un correo de verificacion a tu correo.</p><hr>
+                        <form class="" action="" method="post">
+                          {% csrf_token %}
+                          <input type="text" name="email" value="" placeholder="Correo electrónico">
+                          <button type="submit" name="button">Recuperar</button>
+                        </form>
+                        <a href="/Ingreso">Iniciar sesión</a>
+                      </article>
+
+      </div>
+      <script type="text/javascript">
+     alto =  $(document).height();
+      $('.sectionRecuperacion').css({'height' : alto })
+
+      if (ancho < 700) {
+        $('.body').hide();
+      }
+      </script>
+     <style media="screen">
+     body{
+       background-color: rgb(212, 213, 221);
+       font-family: 'Roboto', sans-serif;
+     }
+     article > a{
+       margin-top: 8px;
+       width: 100%;
+       float: left;
+       text-align: center;
+       text-decoration: none;
+       color: #cccccc;
+     }
+     *{
+       margin: 0px;
+       padding: 0px;
+     }
+     .sectionRecuperacion{
+       width: 100%;
+       background-color:  #f5f5f5;
+       font-family: 'Roboto', sans-serif;
+       margin-top: 0px;
+       float: left;
+     }
+.sectionRecuperacion      .caja{
+           padding: 20px;
+           width: 50%;
+           height: 300px;
+           margin: 0 auto;
+           margin-top: 50px;
+           -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+           border-radius: 10px;
+         }
+
+.sectionRecuperacion     .caja > h1{
+           font-size: 23px;
+           color: rgb(0, 0, 0);
+         }
+.sectionRecuperacion      .caja > p{
+               font-size: 16px;
+               color: rgb(0, 0, 0);
+             }
+.sectionRecuperacion .caja>form{
+             padding: 10px;
+             height: 50%;
+             margin-top: 30px;
+           }
+.sectionRecuperacion    form>p{
+             width: 60%;
+             float: left;
+             margin-bottom: 5px;
+             padding: 0px;
+
+           }
+.sectionRecuperacion      form>a{
+             text-decoration: none;
+             float: right;
+             font-size: 18px;
+             padding: 15px 50px;
+             border-color: #4cae4c;
+             transition: all 0.3s ease 0s;
+             margin-right: 15px;
+           }
+.sectionRecuperacion     input{
+           height: 40px;
+           width: 100%;
+           float: left;
+           border: 0;
+
+           border-bottom: 2px solid rgb(103, 103, 103);
+           background-color: rgb(255, 255, 255);
+           -webkit-border-radius: 5px;
+           text-align: center;
+           border: 1px solid rgb(116, 9, 43);
+           -moz-border-radius: 5px;
+           border-radius: 5px;
+         }
+.sectionRecuperacion       input:focus{
+           outline:0px;
+           border: 1px solid rgb(116, 9, 43);
+           -moz-border-radius: 5px;
+           border-radius: 5px;
+         }
+.sectionRecuperacion     .caja>form>button{
+           float: left;
+           width: 100%;
+           font-size: 12px;
+           padding: 10px 50px;
+           color: #fff;
+           background-color: #5cb85c;
+           border-color: #4cae4c;
+           transition: all 0.3s ease 0s;
+           margin: 0px 0px;
+           margin-top: 20px;
+           -webkit-border-radius: 7px;
+           -moz-border-radius: 7px;
+           border-radius: 7px;
+           border: 0px;
+         }
+.sectionRecuperacion    .caja>form>button:hover{
+           cursor: pointer;
+           background-color: #78ba78;
+         }
+.sectionRecuperacion     form>a{
+       text-decoration: none;
+       color: rgb(0, 0, 0);
+       float: right;
+       margin-right: 30px;
+     }
+     </style>
+     {% endif %}
+{% endblock %}

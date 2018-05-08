@@ -1,0 +1,43 @@
+<br><br><br>
+<div class="datos">
+</div>
+<div class="content-flyers">
+  {% for Flyer in Flyer %}
+  <div class="flyers">
+    <form class="formulario" method="POST">
+
+      <input type="hidden" name="Eliminar_flyer" value="Eliminar_flyer">
+      <input type="hidden" name="pk" value="{{ Flyer.pk }}">
+      {% csrf_token %}
+      <button type="submit" class="myButton" name="button">Eliminar</button>
+
+    </form>
+
+     <img src="{{ Flyer.link }}" alt="">
+   </div>
+  {% endfor %}
+</div>
+
+<style media="screen">
+  .content-flyers{
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+    margin-top: -25px;
+    border: 2px solid rgb(70, 173, 191);
+  }
+  .flyers{
+    width: 29.33%;
+    float: left;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
+  }
+  .myButton{
+    margin-bottom: 5px;
+  }
+  .flyers>img{
+    width: 100%;
+    float: left;
+  }
+</style>

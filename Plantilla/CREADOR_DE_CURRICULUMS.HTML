@@ -1,0 +1,351 @@
+{% extends 'BASE.HTML' %}
+
+{% block Creador_de_curriculums %}
+
+{% if not curriculum %}
+
+
+<div class="centrador">
+  <h2>¡Todo está listo!</h2>
+    <form class="Botones" action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="NuevoCV" value="NuevoCV">
+      <button class="CrearCV" type="submit" name="button">Comenzar</button>
+    </form>
+    <p>Completa tu curricúlum respondiendo unas preguntas.</p>
+</div>
+
+
+
+<style media="screen">
+  .centrador{
+    width: 100%;
+    height: 120px;
+    float: left;
+    margin: 100px;
+    line-height: 120px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .centrador>h2{
+    width: 50%;
+    height: 120px;
+    padding-left: 30%;
+    float: left;
+    line-height: 120px;
+  }
+  .centrador>p{
+    width: 50%;
+    padding-left: 30px;
+    float: left;
+  }
+  .Botones{
+    float: left;
+    width: 50%;
+  }
+  .Botones>.CrearCV{
+    background-color:#5cb85c;
+    color: rgb(245, 245, 245);
+    padding: 25px 30px;
+    font-size: 25px;
+    float: left;
+  }
+  .Botones>.CrearCV:hover{
+    background-color: rgb(93, 181, 100);
+    color: rgb(227, 227, 227);
+    cursor: pointer;
+  }
+</style>
+{% endif %}
+
+
+
+
+
+{% for curriculum in curriculum %}
+<div class="content-creador-de-curriculums">
+<form class="formulario" method="POST">
+  <input type="hidden" name="Curriculum" value="Curriculum">
+  {% csrf_token %}
+  <div class="espectativa-trabajo">
+    <p>¿Cuál es tu espectativa de puesto de trabajo?</p>
+    <input type="text" name="EspectativaDePuesto" placeholder="{{ curriculum.EspectativaDePuesto }}" required value="{{ curriculum.EspectativaDePuesto }}">
+  </div>
+<div class="alinear">
+  <h2>Datos personales</h2>
+<div class="D-Personales">
+
+  <p>¿Cuál es tu nombre completo?</p>
+  <input type="text" name="Nombre" placeholder="{{ curriculum.Nombre }}" required value="{{ curriculum.Nombre }}">
+  <p>¿Cuál es tu dirección?</p>
+  <input type="text" name="Direccion" placeholder="{{ curriculum.Direccion }}" required value="{{ curriculum.Direccion }}">
+  <p>¿Cuál es tu país de recidencia?</p>
+  <input type="text" name="Pais" placeholder="{{ curriculum.Pais }}"  requiredvalue="{{ curriculum.Pais }}" value="{{ curriculum.Pais }}">
+  <p>¿Cuál es tu fecha de nacimieto?</p>
+  <input type="text" name="Nacimiento" placeholder="{{ curriculum.Nacimiento }}" required value="{{ curriculum.Nacimiento }}">
+</div>
+<div class="D-Personales">
+  <p>¿Cuál es tu edad?</p>
+  <input type="text" name="Edad" placeholder="{{ curriculum.Edad }}" required value="{{ curriculum.Edad }}">
+  <p>¿Cuál es D.N.I?</p>
+  <input type="text" name="Dni" placeholder="{{ curriculum.Dni }}" required value="{{ curriculum.Dni }}">
+  <p>¿Cuál es tu Correo electrónico?</p>
+  <input type="text" name="Email" placeholder="{{ curriculum.Email }}"required  value="{{ curriculum.Email }}">
+  <p>¿Cuál es tu número de celular?</p>
+  <input type="text" name="Telefono" placeholder="{{ curriculum.Telefono }}" required value="{{ curriculum.Telefono }}">
+</div>
+</div>
+
+<div class="alinear">
+  <h2>Educación e Idiomas</h2>
+<div class="Educacion">
+  <p>¿Educacíon primaria?</p>
+  <input type="text" name="EducacionPrimaria" placeholder="{{ curriculum.EducacionPrimaria }}"required  value="{{ curriculum.EducacionPrimaria }}">
+  <p>¿Educacíon secundaria?</p>
+  <input type="text" name="EducacionSecundaria" placeholder="{{ curriculum.EducacionSecundaria }}" required value="{{ curriculum.EducacionSecundaria }}">
+  <p>¿Educacíon orientada?</p>
+  <input type="text" name="EducacionOtro" placeholder="{{ curriculum.EducacionOtro }}" required value="{{ curriculum.EducacionOtro }}">
+</div>
+
+
+<div class="Idioma">
+  <p>¿cuál es tu idioma nativo?</p>
+  <input type="text" name="IdiomaNativo" placeholder="{{ curriculum.IdiomaNativo }}" required value="{{ curriculum.IdiomaNativo }}">
+  <p>¿Que otra lengua sabes?</p>
+  <input type="text" name="IdiomaSecundario" placeholder="{{ curriculum.IdiomaSecundario }}" required value="{{ curriculum.IdiomaSecundario }}">
+  <p>¡tal vez otra más!</p>
+  <input type="text" name="IdiomaTerciario" placeholder="{{ curriculum.IdiomaTerciario }}" required value="{{ curriculum.IdiomaTerciario }}">
+</div>
+</div>
+  <div class="Otros-Datos">
+    <p>¿Educacíon terciaria?</p>
+    <input type="text" name="EducacionDeImportancia" placeholder="{{ curriculum.EducacionDeImportancia }}" required value="{{ curriculum.EducacionDeImportancia }}">
+
+  <p>¿Quieres agregar algo más que sepas?</p>
+  <input type="text" name="OtrosConocimientos" placeholder="{{ curriculum.OtrosConocimientos }}" required value="{{ curriculum.OtrosConocimientos }}">
+  <p>¡Cuentanos tus conocimientos en informática!</p>
+  <input type="text" name="Informatica" placeholder="{{ curriculum.Informatica }}" required value="{{ curriculum.Informatica }}">
+  <p>¿Que experiencias laborales tines?</p>
+  <input type="text" name="ExperienciaLaboral" placeholder="{{ curriculum.ExperienciaLaboral }}" required value="{{ curriculum.ExperienciaLaboral }}">
+<button type="submit" class="myButton" name="button">Guardar</button>
+  </div>
+
+</form>
+
+
+<form class="formulario" method="POST">
+    <div class="Otros-Datos">
+  <input type="hidden" name="Nuevo_flyer" value="Nuevo_flyer">
+  {% csrf_token %}
+  <p>Agrega los Links de tus diseños</p>
+  <input type="text" name="Flyer"  placeholder="Agrega el Link tus flyers">
+  <button type="submit" class="myButton" name="button">Agregar</button>
+    </div>
+</form>
+{% include "flyers/flyersB.html" %}
+<br>
+<form class="formulario" method="POST">
+    <div class="Otros-Datos">
+  <input type="hidden" name="Nuevo_Web" value="Nuevo_Web">
+  {% csrf_token %}
+  <p>Agrega los Links de tus proyectos Web</p>
+  <input type="text" name="Web"  placeholder="Agrega el Link tus proyectos">
+  <button type="submit" class="myButton" name="button">Agregar</button>
+    </div>
+</form>
+{% include "PaginasWeb/PaginasWeb_B.html" %}
+<form class="formulario" method="POST">
+    <div class="Otros-Datos">
+  <input type="hidden" name="Nuevo_Diploma" value="Nuevo_Diploma">
+  {% csrf_token %}
+  <p>Agrega los Links de tus diplomas</p>
+  <input type="text" name="Diploma"  placeholder="Agrega el Link tus diplomas">
+  <button type="submit" class="myButton" name="button">Agregar</button>
+    </div>
+</form>
+{% include "Diplomas/DiplomaB.html" %}
+</div>
+
+
+<style media="screen">
+input:focus{
+  outline: 0px;
+}
+  .content-creador-de-curriculums{
+    background-color: #fb6b6b;
+    float: left;
+    width: 100%;
+    padding-top: 30px;
+    margin-bottom: -14px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .D-Personales{
+    width: 50%;
+    float: left;
+    height: 320px;
+    background-color:rgb(255, 255, 255);
+    padding: 30px 20px;
+    padding-top: 0px;
+  }
+  .D-Personales>input{
+    width: 90%;
+    margin-right: 10%;
+    height: 35px;
+    border: 0;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(70, 173, 191);
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .alinear > h2{
+    width: 50%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: rgb(207, 165, 102);
+    margin-left: 30px;
+    float: left;
+  }
+  .D-Personales>input::before{
+    border: 0;
+  }
+  .D-Personales>p{
+    width: 100%;
+    padding: 5px 0px;
+    border-bottom: 2px solid rgb(191, 89, 70);
+    float: left;
+    margin-top:0px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.8s ease 0s;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgb(191, 89, 70);
+  }
+  .D-Personales>p:hover{
+    font-size: 20px;
+    cursor: pointer;
+  color: rgb(191, 89, 70);
+  }
+  .espectativa-trabajo{
+    padding: 30px;
+    width: 80%;
+    border: 2px solid rgb(70, 173, 191);
+    background-color: rgb(255, 255, 255);
+    margin: 25px 0px;
+    margin-left: 10%;
+    float: left;
+  }
+  .Otros-Datos{
+    padding: 30px;
+    width: 80%;
+    border: 2px solid rgb(70, 173, 191);
+    background-color: rgb(255, 255, 255);
+    margin: 25px 0px;
+    margin-left: 10%;
+    float: left;
+    overflow: hidden;
+  }
+  .Otros-Datos>p{
+    width: 100%;
+    padding: 5px 0px;
+    border-bottom: 2px solid rgb(191, 89, 70);
+    float: left;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.8s ease 0s;    font-size: 20px;
+    cursor: pointer;
+    color: rgb(191, 89, 70);
+  }
+  .Otros-Datos>input{
+    width: 90%;
+    margin-right: 10%;
+    height: 35px;
+    border: 0;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(70, 173, 191);
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .espectativa-trabajo>p{
+    width: 100%;
+    padding: 5px 0px;
+    border-bottom: 2px solid rgb(191, 89, 70);
+    float: left;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.8s ease 0s;    font-size: 20px;
+    cursor: pointer;
+    color: rgb(191, 89, 70);
+  }
+  .espectativa-trabajo>input{
+    width: 90%;
+    margin-right: 10%;
+    height: 35px;
+    border: 0;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(70, 173, 191);
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .Educacion{
+    width: 50%;
+    float: left;
+    height: 320px;
+    background-color:rgb(255, 255, 255);
+    padding: 30px 20px;
+    padding-top: 0px;
+  }
+  .Educacion>input{
+    width: 90%;
+    margin-right: 10%;
+    height: 35px;
+    border: 0;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(70, 173, 191);
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .Educacion>p{
+    width: 100%;
+    padding: 5px 0px;
+    border-bottom: 2px solid rgb(191, 89, 70);
+    float: left;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.8s ease 0s;    font-size: 20px;
+    cursor: pointer;
+    color: rgb(191, 89, 70);
+  }
+  .Idioma{
+    width: 50%;
+    float: right;
+    height: 320px;
+    background-color:rgb(255, 255, 255);
+    padding: 30px 20px;
+    padding-top: 0px;
+  }
+  .Idioma>input{
+    width: 90%;
+    margin-right: 10%;
+    height: 35px;
+    border: 0;
+    padding-left: 15px;
+    border-bottom: 1px solid rgb(70, 173, 191);
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .Idioma>p{
+    width: 100%;
+    padding: 5px 0px;
+    border-bottom: 2px solid rgb(191, 89, 70);
+    float: left;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.8s ease 0s;    font-size: 20px;
+    cursor: pointer;
+    color: rgb(191, 89, 70);
+  }
+  .alinear{
+    width: 90%;
+    margin-left: 5%;
+    background-color:rgb(255, 255, 255);
+    float: left;
+  }
+</style>
+
+{% endfor%}
+{% endblock %}

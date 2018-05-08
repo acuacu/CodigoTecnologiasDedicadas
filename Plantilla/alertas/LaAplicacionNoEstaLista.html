@@ -1,0 +1,56 @@
+<div class="Alerta">
+  <h4>Esta aplicación se encuentra en desarrollo y no podemos asegurar que corra de forma correcta hasta no tenerla en producción Gracias por la paciencia.</h4>
+</div>
+{% if user.is_authenticated %}
+<div class="BotonesF">
+<a href="/">Inicio</a>
+<a href="/Comentarios">Comentarios</a>
+<a href="/Usuario">{{ user.username }}</a>
+<a href="/Curriculum">Mi currículum</a>
+<a href="/Soporte">Soporte</a>
+<a href="/Salir">Salir</a>
+</div>
+ {% endif %}
+<style media="screen">
+  .Alerta{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 150px;
+    height: 300px;
+    background: rgb(249, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(255, 255, 255);
+    position: fixed;
+    padding: 30px;
+    cursor: pointer;
+    z-index: 1000000;
+  }
+
+
+
+
+
+  .BotonesF{
+    position: fixed;
+    top: 0px;
+    background-color: rgba(4, 4, 1, 0.24);
+    width: 100%;
+    font-size: 10px;
+    z-index: 200;
+    padding-left: 30%;
+  }
+  .BotonesF>a{
+    float: left;
+    padding: 10px 25px;
+  }
+  .BotonesF>a:hover{
+    background-color: rgba(170, 170, 37, 0.5);
+    cursor: pointer;
+  }
+</style>
+
+<script type="text/javascript">
+$('.Alerta').on('click', function() {
+  $('.Alerta').hide()
+})
+</script>

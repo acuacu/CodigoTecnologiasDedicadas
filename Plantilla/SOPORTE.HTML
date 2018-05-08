@@ -1,0 +1,14 @@
+{% extends 'BASE.HTML' %}
+
+
+{% block Soporte %}
+
+
+
+{% for DatosDelUsuario in DatosDelUsuario %}
+
+
+{{ DatosDelUsuario.Asunto }}
+{{ DatosDelUsuario.Mensaje }}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+<br><br>
+<div class="datos">
+  {% if Flyer %}<h3>Flyers diseñados</h3>{% endif %}
+</div>
+<div class="content-flyers">
+  {% for Flyer in Flyer %}
+  <div class="flyers">
+     <img src="{{ Flyer.link }}" alt="">
+   </div>
+  {% endfor %}
+</div>
+
+<style media="screen">
+  .content-flyers{
+    width: 90%;
+    margin-left: 5%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .flyers{
+    width: 29.33%;
+    height: 220px;
+    float: left;
+    overflow: hidden;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
+  }
+  .flyers>img{
+    width: 100%;
+    float: left;
+    border: 2px solid rgb(70, 173, 191);
+  }
+</style>

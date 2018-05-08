@@ -1,0 +1,43 @@
+<br>
+
+<div class="content-Web">
+  {% for Web in Web %}
+  <div class="Web">
+    <form class="formulariob" method="POST">
+
+      <input type="hidden" name="Eliminar_Web" value="Eliminar_Web">
+      <input type="hidden" name="pk" value="{{ Web.pk }}">
+      {% csrf_token %}
+      <button type="submit" class="myButton" name="button">Eliminar</button>
+
+    </form>
+
+     <img src="{{ Web.link }}" alt="">
+   </div>
+  {% endfor %}
+</div>
+
+<style media="screen">
+  .content-Web{
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    padding-bottom: 1px;
+    background-color: rgb(255, 255, 255);
+    margin-top: -25px;
+    border: 2px solid rgb(70, 173, 191);
+  }
+  .Web{
+    width: 29.33%;
+    float: left;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
+  }
+  .myButton{
+    margin-bottom: 5px;
+  }
+  .Web>img{
+    width: 100%;
+    float: left;
+  }
+</style>

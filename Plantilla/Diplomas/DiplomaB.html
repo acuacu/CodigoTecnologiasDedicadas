@@ -1,0 +1,41 @@
+<br>
+
+<div class="content-Diploma">
+  {% for Diploma in Diploma %}
+  <div class="Diploma">
+    <form class="formulario" method="POST">
+
+      <input type="hidden" name="Eliminar_Diploma" value="Eliminar_Diploma">
+      <input type="hidden" name="pk" value="{{ Diploma.pk }}">
+      {% csrf_token %}
+      <button type="submit" class="myButton" name="button">Eliminar</button>
+
+    </form>
+
+     <img src="{{ Diploma.link }}" alt="">
+   </div>
+  {% endfor %}
+</div>
+<style media="screen">
+  .content-Diploma{
+    width: 80%;
+    margin-left: 10%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+    margin-top: -25px;
+    border: 2px solid rgb(70, 173, 191);
+  }
+  .Diploma{
+    width: 29.33%;
+    float: left;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
+  }
+  .formulario{
+
+  }
+  .Diploma>img{
+    width: 100%;
+    float: left;
+  }
+</style>

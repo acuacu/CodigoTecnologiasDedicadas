@@ -1,0 +1,33 @@
+
+<div class="datos">
+{% if Diploma %}  <h3>Mis diplomas</h3>{% endif %}
+</div>
+<div class="content-Diploma">
+  {% for Diploma in Diploma %}
+  <div class="Diploma">
+     <img src="{{ Diploma.link }}" alt="">
+   </div>
+  {% endfor %}
+</div>
+
+<style media="screen">
+  .content-Diploma{
+    width: 90%;
+    margin-left: 5%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .Diploma{
+    width: 29.33%;
+    height: 220px;
+    float: left;
+    overflow: hidden;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
+  }
+  .Diploma>img{
+    width: 100%;
+    float: left;
+    border: 2px solid rgb(70, 173, 191);
+  }
+</style>

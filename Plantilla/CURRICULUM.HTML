@@ -1,0 +1,228 @@
+{% extends 'BASE.HTML' %}
+
+{% block Curriculum %}
+{% if not curriculum %}
+<div class="contenedor-curriculum">
+<h1>Disculpe no se encontraron currículums apuntados a esta dirección</h1>
+</div>
+<style media="screen">
+.contenedor-curriculum{
+  width: 100%;
+  background-color: #5cb85c;
+  float: left;
+  margin-bottom: -15px;
+  padding: 50px 20px;
+  font-family: 'Roboto', sans-serif;
+}
+  h1{
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 150px;
+    font-family: 'Roboto', sans-serif;
+  }
+</style>
+{% endif %}
+
+
+
+{% for curriculum in curriculum %}
+{% if curriculum.MostrarCV %}
+{% for DatosDelUsuario in DatosDelUsuario %}
+<div class="banner">
+  <style media="screen">
+    .banner{
+      background-color: rgba(202, 203, 202, 1);
+      background-image: url('{{ DatosDelUsuario.FotoDePortada }}');
+      background-size: 100% 100%;
+      background-attachment: fixed;
+    }
+  </style>
+  <img class="foto_de_perfil" src="{{ DatosDelUsuario.FotoDePerfil }}" alt="">
+</div>
+{% endfor %}
+<div class="contenedor-curriculum">
+    <div class="espectativa_de_trabajo">
+      <p class="dos">{{ curriculum.EspectativaDePuesto }}</p>
+
+    </div>
+    <div class="contenedor_datos_curriculum">
+      <div class="datos">
+        <h3> Datos personales</h3>
+        <p>
+          <b>Nomre:</b> {{ curriculum.Nombre }}<br>
+          <b>Direccion:</b> {{ curriculum.Direccion }} <br>
+          <b>Pais:</b> {{ curriculum.Pais }} <br>
+          <b>Nacimiento:</b> {{ curriculum.Nacimiento }} <br>
+          <b>Edad:</b> {{ curriculum.Edad }} <br>
+          <b>DNI:</b> {{ curriculum.Dni }} <br>
+          <b>Email:</b>{{ curriculum.Email }} <br>
+          <b>Telefono:</b> {{ curriculum.Telefono }}
+        </p>
+      </div>
+      <div class="datos">
+        <h3>Educacíon</h3>
+          <p>
+            <b>Primaria:</b> {{ curriculum.EducacionPrimaria }}  <br>
+            <b>Secundario:</b> {{ curriculum.EducacionSecundaria }} <br>
+            <b>Otro:</b> {{ curriculum.EducacionOtro }}
+          </p>
+      </div>
+      <div class="datos">
+        <h3>Educacíon de importancia</h3>
+        <p>{{ curriculum.EducacionDeImportancia }}</p>
+      </div>
+      <div class="datos">
+        <h3>Otros conocimientos</h3>
+        <p>{{ curriculum.OtrosConocimientos }} </p>
+      </div>
+      <div class="datos">
+        <h3>Idioma</h3>
+          <p>
+            <b>Nativo:</b> {{ curriculum.IdiomaNativo }} <br>
+            <b>Secundario:</b> {{ curriculum.IdiomaSecundario }} <br>
+            <b>Terciario</b> {{ curriculum.IdiomaTerciario }}
+          </p>
+      </div>
+      <div class="datos">
+        <h3>Informática</h3>
+        <p>{{ curriculum.Informatica }} </p>
+      </div>
+      <div class="datos">
+        <h3>Experiencia laboral</h3>
+        <p>{{ curriculum.ExperienciaLaboral }}</p>
+      </div>
+{% include "flyers/flyersA.html" %}
+{% include "PaginasWeb/PaginasWeb_A.html" %}
+{% include "Diplomas/DiplomaA.html" %}
+{{ curriculum.FechaDeCreacion }}
+</div>
+
+</div>
+<style media="screen">
+.Alerta{
+  display: none;
+}
+  .banner{
+    background-color: rgba(202, 203, 202, 1);
+    width: 100%;
+    height: 250px;
+    float: left;
+    border-bottom: 2px solid rgb(70, 173, 191);
+  }
+  .foto_de_perfil{
+    float: left;
+    width: 20%;
+    min-height: 100px;
+    position: absolute;
+    right: 40%;
+    top: 100px;
+    background-color: rgba(202, 203, 202, 1);
+    border: 2px solid rgb(70, 173, 191);
+  }
+  .contenedor-curriculum{
+    width: 100%;
+    background-color:#fb6b6b;
+    float: left;
+    margin-bottom: -15px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .espectativa_de_trabajo{
+    width: 70%;
+    margin-top: 120px;
+    padding: 5px;
+    margin-left: 15%;
+    background-color: rgba(202, 203, 202, 1);
+    border:2px solid rgba(2,84,128,1);
+    float: left;
+    padding: 20px 10px;
+  }
+  .espectativa_de_trabajo > p{
+    width: 100%;
+    text-align: center;
+    float: left;
+  }
+
+  .espectativa_de_trabajo > .ocultar_espectativa{
+    font-size: 14px;
+    width: 30%;
+    text-align: center;
+    padding: 20px 10px;
+    background-color: rgb(50, 236, 246);
+    float: right;
+    transition: all 0.8s ease 0s;
+  }
+  .espectativa_de_trabajo:hover .ocultar_espectativa{
+    color: rgb(193, 195, 193);
+    cursor: no-drop;
+    display: block;
+    background-color: rgb(246, 67, 50);
+    transition: all 0.8s ease 0s;
+    color: rgb(249, 249, 249);
+  }
+
+  .espectativa_de_trabajo>.ocultar_espectativa>span{
+    padding: 15px;
+    text-align: center;
+    margin-top: -35px;
+    margin-right: -35px;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid rgb(41, 228, 127);
+    color: rgb(41, 228, 127);
+    float: right;
+  }
+  .espectativa_de_trabajo>.ocultar_espectativa>span:hover{
+    cursor: pointer;
+  }
+  .contenedor_datos_curriculum{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    float: left;
+    padding: 20px;
+    background-color:rgba(255, 255, 255, 1);
+    color: rgb(1, 1, 1);
+  }
+  .contenedor_datos_curriculum > .datos{
+    margin-bottom: 20px;
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+  }
+  .contenedor_datos_curriculum > .datos > p{
+    width: 70%;
+    float: right;
+    font-size: 19px;
+    padding: 25px;
+    border: 2px solid rgb(70, 173, 191);
+    line-height: 23px;
+  }
+  .contenedor_datos_curriculum > .datos>h3{
+    width: 25%;
+    margin-left: 5%;
+    margin-top: -20px;
+    font-size: 20px;
+    position: relative;
+    border-bottom: 3px solid rgb(70, 173, 191);
+    padding-left: 15px;
+    top: 50%;
+    transition: all 0.8s ease 0s;
+  }
+  .contenedor_datos_curriculum > .datos>h3:hover{
+    font-size: 23px;
+    margin-top: -30px;
+    cursor: pointer;
+    border-bottom: 3px solid rgb(191, 70, 70);
+  }
+  b{
+    color: rgb(3, 3, 3);
+    font-size: 20px;
+    width: 25%;
+    float: left;
+  }
+</style>
+
+
+{% endif %}
+{% endfor %}
+{% endblock %}

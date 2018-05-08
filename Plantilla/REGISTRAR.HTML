@@ -1,0 +1,214 @@
+{% extends 'BASE.HTML' %}
+
+
+{% block Registrar %}
+    {% if user.is_authenticated %}
+    <script type="text/javascript">
+      location.href ="/Usuario";
+    </script>
+    {% else %}
+<div class="sectionRegistro">
+                     <article class="caja">
+                       <h1>Formulario de registro</h1>
+                       <p>Creá tu cuenta de manera gratuita.</p>
+                       <hr>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="accion" value="Registro">
+      <input type="text" name="username" value="" placeholder="Nombre de usuario">
+      <input type="text" name="email" value="" placeholder="Correo electrónico">
+      <input type="password" name="password" value="" placeholder="Contraseña">
+      <p> <a href="">Términos y condiciones</a> </p><input class="check" type="checkbox" name="" required>
+      <button type='submit' name="button">Registrar</button>
+
+    </form>
+    <div class="derecha">
+      <p class="PP">Continuar con tus redes sociables: </p><br>
+      <a class="Github" href="{% url 'social:begin' 'github' %}"><span class="icon-github"></span></a><br>
+      <a class="Twitter" href="{% url 'social:begin' 'twitter' %}"><span class="icon-twitter"></span></a><br>
+      <a class="Facebook" href="{% url 'social:begin' 'facebook' %}"><span class="icon-facebook"></span> </a>
+
+    </div>
+              <br><a href="/Ingreso">Iniciar sesión</a>
+
+                     </article>
+</div>
+    <script type="text/javascript">
+    alto =  $(document).height();
+
+  $('.caja').css({'height' : alto })
+
+  if (ancho < 700) {
+    $('.body').hide();
+  }
+    </script>
+    <style media="screen">
+    form>p{
+      font-size: 14px;
+      float: left;
+      margin-top: 20px;
+    }
+    .check{
+      width: 20px;
+      height: 20px;
+      float: right;
+      margin-right: 5%;
+      margin-top: 20px;
+    }
+      .sectionRegistro{
+        width: 100%;
+        background-color:  #f5f5f5;
+        margin-top: 0px;
+      }
+      .caja{
+        margin-top: 30px;
+        padding: 20px;
+        width: 50%;
+        margin: 0 auto;
+        padding-top: 70px;
+        margin-bottom: -5px;
+        font-family: 'Roboto', sans-serif;
+      }
+      .caja > h1{
+        font-size: 23px;
+        color: rgb(0, 0, 0);
+      }
+      .caja>a{
+        text-decoration: none;
+        float: right;
+        margin-right: 10px;
+        color: rgb(0, 0, 0);
+      }
+      .caja>a{
+      margin-top: 18px;
+      width: 100%;
+      float: left;
+      text-align: center;
+      text-decoration: none;
+      color: #cccccc;
+      }
+
+
+        .caja>form{
+          width: 50%;
+          float: left;
+          padding: 0px;
+          margin-top: 30px;
+        }
+        form>p{
+          width: 60%;
+          float: left;
+          padding: 0px;
+
+        }
+        form>a{
+          text-decoration: none;
+          float: right;
+          font-size: 18px;
+          padding: 15px 50px;
+          border-color: #4cae4c;
+          transition: all 0.3s ease 0s;
+          margin-right: 15px;
+        }
+
+       input{
+            height: 40px;
+            width: 100%;
+            float: left;
+            border: 0;
+            margin-bottom: 5px;
+            border-bottom: 2px solid rgb(103, 103, 103);
+            background-color: rgb(255, 255, 255);
+            -webkit-border-radius: 5px;
+            text-align: center;
+            border: 1px solid rgb(116, 9, 43);
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+          }
+         input:focus{
+            outline:0px;
+            border: 1px solid rgb(116, 9, 43);
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+          }
+      .caja>form>button{
+            float: left;
+            width:  100%;
+            font-size: 12px;
+            padding: 10px 50px;
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c;
+            transition: all 0.3s ease 0s;
+            margin: 0px 0px;
+            margin-top: 20px;
+            -webkit-border-radius: 7px;
+            -moz-border-radius: 7px;
+            border-radius: 7px;
+            border: 0px;
+          }
+         .caja>form>button:hover{
+            cursor: pointer;
+            background-color: #78ba78;
+          }
+    .derecha{
+      float: right;
+      width: 40%;
+      border-left: 3px solid #cccccc;
+      padding-left: 30px;
+      padding: 20px;
+      margin-top: 25px;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+    }
+    .derecha>p{
+      float: right;
+      color:rgb(0, 0, 0);
+      font-size: 10px;
+      width: 100%;
+    }
+    .derecha > a{
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        padding: 10px 22px;
+        float: right;
+        font-size: 30px;
+        transition: all 0.3s ease 0s;
+        margin-left: 50%;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        margin-bottom: 0px;
+      }
+      .derecha .Facebook{
+        background-color: rgb(5, 100, 201);
+        color: rgb(223, 223, 223);
+      }
+      .derecha .Facebook:hover{
+        background-color: rgb(223, 223, 223);
+        color: rgb(5, 100, 201);
+      }
+    .derecha  .Github{
+      background: rgb(169, 169, 170);
+      color: rgb(31, 31, 31);
+    }
+    .derecha  .Github:hover{
+      background: rgb(31, 31, 31);
+      color: rgb(169, 169, 170);
+    }
+       .derecha .Twitter {
+       background: rgb(223, 223, 223);
+       color:rgb(71, 138, 179);
+     }
+     .derecha .Twitter:hover {
+     background: rgb(223, 223, 223);
+     color:rgb(71, 138, 179);
+    }
+    .derecha .PP{
+    font-size: 10px;
+    color: rgb(143, 39, 39);
+    }
+    </style>
+    {% endif %}
+{% endblock %}

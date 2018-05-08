@@ -1,0 +1,33 @@
+
+<div class="datos">
+  {% if Web %}<h3>Mis proyectos Web</h3>{% endif %}
+</div>
+<div class="content-Web">
+  {% for Web in Web %}
+  <div class="Web">
+     <img src="{{ Web.link }}" alt="">
+   </div>
+  {% endfor %}
+</div>
+
+<style media="screen">
+  .content-Web{
+    width: 90%;
+    margin-left: 5%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+  }
+  .Web{
+    width: 29.33%;
+    height: 220px;
+    float: left;
+    overflow: hidden;
+    margin: 2%;
+    background-color: rgb(255, 255, 255);
+  }
+  .Web>img{
+    width: 100%;
+    float: left;
+    border: 2px solid rgb(70, 173, 191);
+  }
+</style>
