@@ -143,8 +143,10 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '37dd948d01a0e1c1f354148479a5f4ea'
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-MEDIA_URL= '/media/'
+MEDIA_URL= '/static/media/'
 EMAIL_HOST = 'smtpout.secureserver.net'
 EMAIL_HOST_USER = 'administrador@tecnologiasdedicadas.com'
 EMAIL_HOST_PASSWORD = 'walteres09_'

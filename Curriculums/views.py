@@ -4,9 +4,10 @@ from django.shortcuts import render
 from django.template import loader
 from random import randint
 from django.contrib.auth.models import User
-from .models import Curriculum as CV, Flyers as Fly, Diplomas as Dip, PaginasWeb as PWeb, DatosUsuario as DatosU, ContadorDeCurriculum as contador
+from .models import Curriculum as CV, Flyers as Fly, Diplomas as Dip, PaginasWeb as PWeb, DatosUsuario as DatosU, ContadorDeCurriculum as contador, DatosUsuario
+from .models import FotoDePerfil as FotoDePerfilAS, FotoDelPortada as FotoDePortadaAS
 from Web.models import Ticket
-from .forms import DatosPersonales as xxx
+from .forms import DatosPersonales as xxx, FotoDePerfilFormulario, FotoDelPortadaFormulario
 
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
@@ -24,14 +25,26 @@ def Usurio(request):
     DatosDelUsuario = DatosU.objects.filter(CuentaDelUsuario=request.user.pk)
     curriculum = CV.objects.filter(CuentaDelUsuario=request.user.pk)
     Soporte = Ticket.objects.filter(CuentaDelUsuario=request.user.pk).order_by('FechaDeCreacion')
+    #FormImagenes = ImagenesUsuario(request.POST or None, request.FILES or None)
     if request.method == 'POST':
+        CuentaDelUsuario = request.user
+
         if request.POST.get('NuevoUsuario', None) == 'NuevoUsuario':
             ttt = DatosU.objects.create(CuentaDelUsuario=request.user)
             ttt.save()
+
+        if request.POST.get('FotoDePerfil', None) == 'FotoDePerfil':
+            FotoDePerfil = request.FILES['FotoDePerfil']
+            FotoDePerfilAS.objects.filter(CuentaDelUsuario=CuentaDelUsuario).delete()
+            acrualizar = FotoDePerfilAS.objects.filter(CuentaDelUsuario=CuentaDelUsuario).create(CuentaDelUsuario=CuentaDelUsuario, FotoDePerfil=FotoDePerfil)
+
+        if request.POST.get('FotoDePortada', None) == 'FotoDePortada':
+            FotoDePortada = request.FILES['FotoDePortada']
+            FotoDePortadaAS.objects.filter(CuentaDelUsuario=CuentaDelUsuario).delete()
+            acrualizar = FotoDePortadaAS.objects.filter(CuentaDelUsuario=CuentaDelUsuario).create(CuentaDelUsuario=CuentaDelUsuario, FotoDePortada=FotoDePortada)
+
         if request.POST.get('EditarDatosPersonales', None) == 'EditarDatosPersonales':
-            CuentaDelUsuario = request.user
-            FotoDePerfil = request.POST.get('FotoDePerfil', None)
-            FotoDePortada = request.POST.get('FotoDePortada', None)
+            FotoDePortada = request.FILES['FotoDePortada']
             NumeroDeTelefono = request.POST.get('NumeroDeTelefono', None)
             DeQueTrabajo = request.POST.get('DeQueTrabajo', None)
             SegundoFactorDeAutentificacion = request.POST.get('SegundoFactorDeAutentificacion', None)
@@ -40,12 +53,13 @@ def Usurio(request):
                 Elemento = True
             else:
                 Elemento = False
-            acrualizar = DatosU.objects.filter(CuentaDelUsuario=request.user).update(CuentaDelUsuario=CuentaDelUsuario,
-            FotoDePerfil=FotoDePerfil,
-            FotoDePortada=FotoDePortada,
+            DatosUsuario.objects.filter(CuentaDelUsuario=CuentaDelUsuario).delete()
+            acrualizar = DatosUsuario.objects.filter(CuentaDelUsuario=CuentaDelUsuario).update(
+            CuentaDelUsuario=CuentaDelUsuario,
             NumeroDeTelefono=NumeroDeTelefono,
             DeQueTrabajo=DeQueTrabajo,
             SegundoFactorDeAutentificacion=Elemento)
+            #acrualizar.save()
             return HttpResponseRedirect('/Usuario')
         if request.POST.get('CambiarContraseña', None) == 'CambiarContraseña':
             passwordAntiguo = request.POST.get('passwordAntiguo', None)
@@ -67,7 +81,7 @@ def Usurio(request):
     context = {
     'DatosDelUsuario' : DatosDelUsuario,
     'curriculum' : curriculum,
-    'Soporte' : Soporte
+    'Soporte' : Soporte,
     }
     return HttpResponse(template.render(context, request))
 
@@ -108,7 +122,7 @@ def CurriculumB(request):
             numero = (actualizar[0].contadorCurriculum) + 1
             actualizar = contador.objects.filter(pk = 1).update(contadorCurriculum=numero)
             print(actualizar)
-            ttt = CV.objects.create(CuentaDelUsuario=request.user)
+            ttt = CV.objects.create(CuentaDelUsuario=request.user, pkUsuario=request.user.pk)
             ttt.save()
         if request.POST.get('Nuevo_flyer', None) == 'Nuevo_flyer':
             link = request.POST.get('Flyer', None)
@@ -200,7 +214,7 @@ def CurriculumD(request):
     actualizar = contador.objects.filter(pk = 1)
     numero = (actualizar[0].contadorCurriculum) + 1
     actualizar = contador.objects.filter(pk = 1).update(contadorCurriculum=numero)
-    curriculum = CV.objects.create(CuentaDelUsuario=request.user)
+    curriculum = CV.objects.create(CuentaDelUsuario=request.user, pkUsuario=request.user.pk)
     print('numero actual de curiculums {}'.format(actualizar))
     return HttpResponseRedirect('/Usuario')
 

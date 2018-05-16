@@ -1,8 +1,8 @@
 <br><br><br>
 <div class="datos">
 </div>
+{% for Flyer in Flyer %}
 <div class="content-flyers">
-  {% for Flyer in Flyer %}
   <div class="flyers">
     <form class="formulario" method="POST">
 
@@ -15,8 +15,8 @@
 
      <img src="{{ Flyer.link }}" alt="">
    </div>
-  {% endfor %}
 </div>
+{% endfor %}
 
 <style media="screen">
   .content-flyers{

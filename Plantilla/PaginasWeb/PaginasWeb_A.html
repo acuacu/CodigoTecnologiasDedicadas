@@ -2,14 +2,13 @@
 <div class="datos">
   {% if Web %}<h3>Mis proyectos Web</h3>{% endif %}
 </div>
+{% for Web in Web %}
 <div class="content-Web">
-  {% for Web in Web %}
   <div class="Web">
      <img src="{{ Web.link }}" alt="">
    </div>
-  {% endfor %}
 </div>
-
+{% endfor %}
 <style media="screen">
   .content-Web{
     width: 90%;

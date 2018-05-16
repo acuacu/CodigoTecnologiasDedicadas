@@ -2,14 +2,13 @@
 <div class="datos">
   {% if Flyer %}<h3>Flyers diseñados</h3>{% endif %}
 </div>
+{% for Flyer in Flyer %}
 <div class="content-flyers">
-  {% for Flyer in Flyer %}
   <div class="flyers">
      <img src="{{ Flyer.link }}" alt="">
    </div>
-  {% endfor %}
 </div>
-
+{% endfor %}
 <style media="screen">
   .content-flyers{
     width: 90%;

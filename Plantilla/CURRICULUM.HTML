@@ -33,12 +33,12 @@
   <style media="screen">
     .banner{
       background-color: rgba(202, 203, 202, 1);
-      background-image: url('{{ DatosDelUsuario.FotoDePortada }}');
+      background-image: url('http://127.0.0.1:9000/STATIC/media/{{ DatosDelUsuario.CuentaDelUsuario }}/FotoDePortada/FotoDePortada_{{ DatosDelUsuario.CuentaDelUsuario }}.jpg');
       background-size: 100% 100%;
       background-attachment: fixed;
     }
   </style>
-  <img class="foto_de_perfil" src="{{ DatosDelUsuario.FotoDePerfil }}" alt="">
+  <img class="foto_de_perfil" src="http://127.0.0.1:9000/STATIC/media/{{ DatosDelUsuario.CuentaDelUsuario }}/FotoDePerfil/FotoDePerfil_{{ DatosDelUsuario.CuentaDelUsuario }}.jpg" alt="">
 </div>
 {% endfor %}
 <div class="contenedor-curriculum">

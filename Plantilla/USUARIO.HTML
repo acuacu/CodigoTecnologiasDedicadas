@@ -37,17 +37,101 @@
 
 {% for DatosDelUsuario in DatosDelUsuario %}
 <div class="content-Usuario">
-  <div class="banner">
-    <style media="screen">
-      .banner{
-        background-color: rgba(202, 203, 202, 1);
-        background-image: url('{{ DatosDelUsuario.FotoDePortada }}');
-        background-size: 100% 100%;
-        background-attachment: fixed;
-      }
-    </style>
-    <img class="foto_de_perfil" src="{{ DatosDelUsuario.FotoDePerfil }}" alt="">
+  <div>
+    <div  class="banner">
+      <img src="http://127.0.0.1:9000/STATIC/media/{{ user.username }}/FotoDePortada/FotoDePortada_{{ user.username }}.jpg" alt="">
+
+    </div>
+    <form class="botonesEdicionImagenesIzquirda" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <input type="hidden" name="FotoDePortada" value="FotoDePortada">
+      <input id="PortadaID" type="file" name="FotoDePortada"  class="file-input" value="">
+      <button type="submit" name="button">Cambiar Portada</button>
+    </form>
+    <div class="foto_de_perfil">
+      <img src="http://127.0.0.1:9000/STATIC/media/{{ user.username }}/FotoDePerfil/FotoDePerfil_{{ user.username }}.jpg" alt="">
+
+    </div>
+    <form class="botonesEdicionImagenesDerecha" action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <input type="hidden" name="FotoDePerfil" value="FotoDePerfil">
+      <input type="file" name="FotoDePerfil" class="file-input"  value="">
+      <button type="submit" name="button">Cambiar Perfil</button>
+    </form>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <style media="screen">
+      .editar{
+        float: left;
+        width: 100%;
+        height: 200px;
+        padding-top: 120px;
+        background-color: rgb(15, 65, 117);
+        border-radius: 0px;
+      }
+      canvas{
+
+        border: 2px solid rgb(161, 221, 138);
+        margin-top: 35px;
+      }
+      .file-input {
+      visibility: hidden;
+      width: 0;
+      position: relative;
+      width: 100%;
+      margin-bottom: 15px;
+      }
+.file-input::before {
+  content: '!Seleccionar una imagen¡';
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+  visibility: visible;
+  position: absolute;
+}
+.file-input:hover::before {
+  border-color: black;
+}
+.file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+```
+  </style>
+
+
+
+
+
+
+
+
+
 
 
 <div class="content_Titulo">
@@ -91,6 +175,35 @@
 
 
 <style media="screen">
+.botonesEdicionImagenesIzquirda{
+  border: 5px solid rgba(10, 16, 36, 1);
+  width: 30%;
+  margin-left: 5%;
+  height: 130px;
+  padding: 20px;
+  margin-top: -150px;
+  font-size:7px;
+  float: left;
+  background-color: rgba(249, 250, 249, 0.2);
+}
+.botonesEdicionImagenesDerecha{
+  border: 5px solid rgba(10, 16, 36, 1);
+  width: 30%;
+  padding: 20px;
+  margin-right: 5%;
+  height: 130px;
+  margin-top: -150px;
+  font-size:7px;
+  float: right;
+  background-color: rgba(249, 250, 249, 0.2);
+}
+.botonesEdicionImagenesDerecha>button{
+
+
+}
+.botonesEdicionImagenesDerecha>input{
+
+}
   .content_manejador{
     width: 55%;
     margin-left: 5%;
@@ -186,13 +299,10 @@
 
 <div class="content-Formulario">
     <p>Con estos datos nos comunicamos con usted.</p>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
       <input type="hidden" name="EditarDatosPersonales" value="EditarDatosPersonales">
             {% csrf_token %}
-      <p>Foto</p>
-      <input type="text" name="FotoDePerfil" value="{{ DatosDelUsuario.FotoDePerfil }}" placeholder="{{ DatosDelUsuario.FotoDePerfil }}" required >
-      <p>Banner</p>
-      <input type="text" name="FotoDePortada" value="{{ DatosDelUsuario.FotoDePortada }}" placeholder="{{ DatosDelUsuario.FotoDePortada }}" required >
+
       <p>Telefono Celular</p>
       <input type="text" name="NumeroDeTelefono" value="{{ DatosDelUsuario.NumeroDeTelefono }}" placeholder="{{ DatosDelUsuario.NumeroDeTelefono }}" required >
       <p>Soy profecional en...</p>
@@ -214,9 +324,83 @@
       <button type="submit" name="button">Guardar</button>
     </form>
   </div>
+<!--
+
+<div id="imagen">
+<div id="miCanvas"></div>
+</div>
+<img src="http://127.0.0.1:9000/STATIC/media/Administrador/FotoDePerfil/FotoDePerfil_Administrador.jpg" alt="" id="miImg">
+<style media="screen">
+  #miImg{
+    width: 70%;
+  }
+  #canvasFinal{
+    display: none;
+  }
+</style>
+<div id="botones">
+  <button id="ctImg">Cortar Imagen</button>
+  <button id="ctFin">Terminar Recorte</button>
+</div>
+<canvas id="canvasFinal"></canvas>
 
 
-<!-- 
+<script type="text/javascript" src="http://127.0.0.1:9000/STATIC/JavascriptUsuario.js">
+
+</script>
+<script>
+  $(document).on("click", function() {
+    $("#ctImg").on("click", function() {
+        clsCut.letsCut("ctImg", "ctFin", "miImg", "miCanvas");
+    });
+  });
+</script>
+<script type="text/javascript" src="http://127.0.0.1:9000/STATIC/kinetic-v3.9.8.js"></script>
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
   <div class="content_manejador">
     <h2>Soporte</h2>
     <form method="post">
@@ -263,6 +447,7 @@
 
 
 <style media="screen">
+
 .Tiquets{
   width: 100%;
   height: 300px;
@@ -300,26 +485,44 @@ button{
   color: rgb(255, 255, 255);
   font-size: 20px;
 }
-.frm>button:hover{
+button:hover{
   background-color:#a61b1b;
   cursor: pointer;
 }
 
   .banner{
     width: 100%;
-    height: 250px;
     float: left;
-    border-bottom: 2px solid rgb(70, 173, 191);
+    border-radius: 0px;
+    height: 350px;
+    overflow:hidden;
+    border-bottom: 5px solid rgb(70, 173, 191);
+  }
+  .banner>img{
+    width: 100%;
+    float: left;
+    margin-top: -100px;
   }
   .foto_de_perfil{
     float: left;
     width: 20%;
     position: absolute;
-    min-height: 100px;
+    height: 250px;
     right: 40%;
-    top: 100px;
+    top: 220px;
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     background-color: rgba(202, 203, 202, 1);
     border: 2px solid rgb(70, 173, 191);
+    overflow: hidden;
+  }
+  .foto_de_perfil>img{
+    width: 100%;
+    float: left;
   }
 
 .content-Formulario>p{

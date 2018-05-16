@@ -1,7 +1,6 @@
 <br>
-
+{% for Diploma in Diploma %}
 <div class="content-Diploma">
-  {% for Diploma in Diploma %}
   <div class="Diploma">
     <form class="formulario" method="POST">
 
@@ -14,8 +13,8 @@
 
      <img src="{{ Diploma.link }}" alt="">
    </div>
-  {% endfor %}
 </div>
+{% endfor %}
 <style media="screen">
   .content-Diploma{
     width: 80%;

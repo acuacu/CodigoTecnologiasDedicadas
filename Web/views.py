@@ -19,8 +19,9 @@ from .forms import AgregarContactosWeb as xxx, AgregarComentariosWeb as com
 from django.contrib.auth.models import User
 # Create your views here.
 def InicioWeb(request):
-    destacados = Curri.objects.filter(CuentaDelUsuario=User.objects.filter(pk=1))
-    DatosDelUsuario = DatosU.objects.filter(CuentaDelUsuario=User.objects.filter(pk=1))
+    #DatosDelUsuario = DatosU.objects.filter(UsuarioDestacado=True)
+    destacados = Curri.objects.filter(UsuarioDestacados=True)
+    #usuarios = User.objects.all()
     ContadorCurriculum = Contador.objects.filter(pk=1)
     template = loader.get_template('INICIO.html')
     #send_mail("Asunto",
@@ -29,8 +30,9 @@ def InicioWeb(request):
     #          ['walterdaniel.backend@gmail.com'])
     context = {
     'destacados' : destacados,
-    'DatosDelUsuario': DatosDelUsuario,
-    'ContadorCurriculum' : ContadorCurriculum
+    #'DatosDelUsuario': DatosDelUsuario,
+    'ContadorCurriculum' : ContadorCurriculum,
+    #'usuarios' : usuarios
     }
     return HttpResponse(template.render(context, request))
 

@@ -17,12 +17,17 @@
    </form>
  </div>
 
+ <img src="http://127.0.0.1:9000/STATIC/Comentaros-tecnologicos.jpg" alt="">
 
  <div class="header-comentario">
- <h1>Tu opinion o comentario es bienvenido</h1>
+ <h1>¿Qué relación tienes con la industria tecnología?</h1>
 <div class="linea_AZUL"></div>
  </div>
+ <div class="Propaganda">
 
+ </div>
+
+<div class="content-comentario">
    {% for textos in textos %}
     <section>
       <h1 class="icon-users-outline margin-iz15px"> &nbsp; &nbsp; {{ textos.text_usuarios_comentarios}}</h1>
@@ -32,11 +37,32 @@
       </article>
      </section>
    {% endfor %}
+</div>
 
 
  <style media="screen">
+ .content-comentario{
+   width:49%;
+   padding-bottom: 45px;
+   height: 650px;
+   float: left;
+   overflow: auto;
+   border-top: 4px solid rgba(56, 76, 96, 1);
+   border-left: 4px solid rgba(56, 76, 96, 1);
+   border-bottom: 4px solid rgba(56, 76, 96, 1);
+   margin-left: 2%;
+   margin-bottom: 30px;
+ }
+.Propaganda{
+  width: 45%;
+  float: right;
+  margin-right: 2%;
+  background-image: url("http://127.0.0.1:9000/STATIC/Comentarios-imagen.jpg");
+  background-position: center;
+  height: 350px;
+}
  section{
-   width: 50%;
+   width: 90%;
    margin-left: 3%;
    margin-top: 25px;
    float: left;
@@ -64,11 +90,26 @@ padding: 5px;
      width: 100%;
      float: right;
      text-align: center;
-     background-color: rgb(216, 231, 235);
+     background-color: rgb(23, 146, 179);
      padding: 30px 150px;
      height: 100px;
-     margin-bottom: 15px;
+     margin-bottom: 45px;
+     margin-top: 45px;
      color: rgb(85, 85, 85);
+     -webkit-border-radius: 01px;
+    -moz-border-radius: 01px;
+    border-radius: 01px;
+   }
+   img{
+     width: 100%;
+     margin-top: -10px;
+     float: left;
+     -webkit-border-top-left-radius: 0px;
+-webkit-border-bottom-right-radius: 0px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-bottomright: 0px;
+border-top-left-radius: 0px;
+border-bottom-right-radius: 0px;
    }
    .crear-comentario > h1{
      text-align: center;
@@ -96,6 +137,10 @@ padding: 5px;
 
     }
     .Escribir-comentario{
+      -webkit-border-radius: 05px;
+      -moz-border-radius: 05px;
+      border-radius: 05px;
+      padding-top: 5px;
       position: fixed;
       right: 28px;
       bottom: 0px;
@@ -104,15 +149,6 @@ padding: 5px;
       height: 40px;
       background-color: rgb(153, 153, 153);
       z-index: 60;
-      -webkit-border-radius: 20px;
-      -webkit-border-bottom-right-radius: 3px;
-      -webkit-border-bottom-left-radius: 3px;
-      -moz-border-radius: 20px;
-      -moz-border-radius-bottomright: 3px;
-      -moz-border-radius-bottomleft: 3px;
-      border-radius: 20px;
-      border-bottom-right-radius: 3px;
-      border-bottom-left-radius: 3px;
     }
     .Escribir-comentario > h2{
       width: 60%;
@@ -138,6 +174,9 @@ padding: 5px;
       z-index: 60;
     }
     .input-comentarios input{
+      -webkit-border-radius: 01px;
+      -moz-border-radius: 01px;
+      border-radius: 01px;
       width: 96%;
       height: 25px;
       font-size: 15px;
@@ -161,6 +200,11 @@ padding: 5px;
     }
     .comentario-icon-caja{
       color: rgb(170, 170, 170);
+    }
+    textarea{
+      -webkit-border-radius: 01px;
+-moz-border-radius: 01px;
+border-radius: 01px;
     }
  </style>
  <script type="text/javascript">
