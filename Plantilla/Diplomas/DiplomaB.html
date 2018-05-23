@@ -1,20 +1,23 @@
 <br>
-{% for Diploma in Diploma %}
+
 <div class="content-Diploma">
+    {% for Diploma in Diploma %}
   <div class="Diploma">
     <form class="formulario" method="POST">
 
       <input type="hidden" name="Eliminar_Diploma" value="Eliminar_Diploma">
       <input type="hidden" name="pk" value="{{ Diploma.pk }}">
+      <input type="hidden" name="url" value="{{ Diploma.diploma.url }}">
       {% csrf_token %}
       <button type="submit" class="myButton" name="button">Eliminar</button>
 
     </form>
 
-     <img src="{{ Diploma.link }}" alt="">
+     <img src="http://127.0.0.1:9000{{ Diploma.diploma.url }}" alt="">
    </div>
+    {% endfor %}
 </div>
-{% endfor %}
+
 <style media="screen">
   .content-Diploma{
     width: 80%;

@@ -111,6 +111,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_URL = '/static/'
+STATIC_URL = '/STATIC/'
 MEDIA_ROOT = '../static'
-MEDIA_URL= '/STATIC/'
+MEDIA_URL= '/static/'

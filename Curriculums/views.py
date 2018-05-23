@@ -8,7 +8,7 @@ from .models import Curriculum as CV, Flyers as Fly, Diplomas as Dip, PaginasWeb
 from .models import FotoDePerfil as FotoDePerfilAS, FotoDelPortada as FotoDePortadaAS
 from Web.models import Ticket
 from .forms import DatosPersonales as xxx, FotoDePerfilFormulario, FotoDelPortadaFormulario
-
+import os
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
@@ -125,17 +125,22 @@ def CurriculumB(request):
             ttt = CV.objects.create(CuentaDelUsuario=request.user, pkUsuario=request.user.pk)
             ttt.save()
         if request.POST.get('Nuevo_flyer', None) == 'Nuevo_flyer':
+            flyers = request.FILES['FlyerAgregarI']
             link = request.POST.get('Flyer', None)
-            ttt = Fly.objects.create(CuentaDelUsuario=request.user, link=link)
-            ttt.save()
+            ttt = Fly.objects.create(CuentaDelUsuario=request.user, link=link, flyers=flyers)
+
 
         if request.POST.get('Nuevo_Diploma', None) == 'Nuevo_Diploma':
+            diploma = request.FILES['DiplomaAgregarI']
             link = request.POST.get('Diploma', None)
-            ttt = Dip.objects.create(CuentaDelUsuario=request.user, link=link)
+            ttt = Dip.objects.create(CuentaDelUsuario=request.user, link=link, diploma=diploma)
             ttt.save()
         if request.POST.get('Eliminar_Diploma', None) == 'Eliminar_Diploma':
             pk = request.POST.get('pk', None)
-            ttt = Dip.objects.filter(CuentaDelUsuario=request.user, id=pk).delete()
+            urls = request.POST.get('url', None)
+            if os.path.isfile(os.path.join(urls[1:])):
+                ss = os.remove(os.path.join(urls[1:]))
+                ttt = Dip.objects.filter(CuentaDelUsuario=request.user, id=pk).delete()
 
 
         if request.POST.get('Nuevo_Web', None) == 'Nuevo_Web':
@@ -150,8 +155,10 @@ def CurriculumB(request):
 
         if request.POST.get('Eliminar_flyer', None) == 'Eliminar_flyer':
             pk = request.POST.get('pk', None)
-            ttt = Fly.objects.filter(CuentaDelUsuario=request.user, id=pk).delete()
-
+            urls = request.POST.get('url', None)
+            if os.path.isfile(os.path.join(urls[1:])):
+                ss = os.remove(os.path.join(urls[1:]))
+                ttt = Fly.objects.filter(CuentaDelUsuario=request.user, id=pk).delete()
         accion = request.POST.get('Curriculum', None)
         if accion == 'Curriculum':
             Nombre = request.POST.get('Nombre', None)

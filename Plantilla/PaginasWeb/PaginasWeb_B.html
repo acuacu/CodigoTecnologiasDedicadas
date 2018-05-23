@@ -1,6 +1,7 @@
 <br>
-{% for Web in Web %}
+
 <div class="content-Web">
+    {% for Web in Web %}
   <div class="Web">
     <form class="formulariob" method="POST">
 
@@ -10,11 +11,13 @@
       <button type="submit" class="myButton" name="button">Eliminar</button>
 
     </form>
-
-     <img src="{{ Web.link }}" alt="">
+    <iframe src="{{ Web.link }}" scrolling="yes">
+      <p>Su navegador no soporta iframes.</p>
+    </iframe>
    </div>
+   {% endfor %}
 </div>
-{% endfor %}
+
 <style media="screen">
   .content-Web{
     width: 80%;
@@ -34,7 +37,8 @@
   .myButton{
     margin-bottom: 5px;
   }
-  .Web>img{
+  .Web>iframe{
+    overflow: scroll;
     width: 100%;
     float: left;
   }

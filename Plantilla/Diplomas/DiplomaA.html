@@ -2,13 +2,13 @@
 <div class="datos">
 {% if Diploma %}  <h3>Mis diplomas</h3>{% endif %}
 </div>
-{% for Diploma in Diploma %}
+
 <div class="content-Diploma">
-  <div class="Diploma">
-     <img src="{{ Diploma.link }}" alt="">
-   </div>
-</div>
+{% for Diploma in Diploma %}  
+     <img src="http://127.0.0.1:9000{{ Diploma.diploma.url }}" alt="">
 {% endfor %}
+</div>
+
 <style media="screen">
   .content-Diploma{
     width: 90%;
@@ -16,17 +16,10 @@
     float: left;
     background-color: rgb(255, 255, 255);
   }
-  .Diploma{
-    width: 29.33%;
-    height: 220px;
+  .content-Diploma>img{
+    width: 25%;
+    margin-left: 6.25%;
     float: left;
-    overflow: hidden;
-    margin: 2%;
     background-color: rgb(255, 255, 255);
-  }
-  .Diploma>img{
-    width: 100%;
-    float: left;
-    border: 2px solid rgb(70, 173, 191);
-  }
+}
 </style>

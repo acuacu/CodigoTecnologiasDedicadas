@@ -21,6 +21,7 @@ from django.contrib.auth.models import User
 def InicioWeb(request):
     #DatosDelUsuario = DatosU.objects.filter(UsuarioDestacado=True)
     destacados = Curri.objects.filter(UsuarioDestacados=True)
+    busquedas = Curri.objects.all()
     #usuarios = User.objects.all()
     ContadorCurriculum = Contador.objects.filter(pk=1)
     template = loader.get_template('INICIO.html')
@@ -33,6 +34,7 @@ def InicioWeb(request):
     #'DatosDelUsuario': DatosDelUsuario,
     'ContadorCurriculum' : ContadorCurriculum,
     #'usuarios' : usuarios
+    "busquedas" : busquedas
     }
     return HttpResponse(template.render(context, request))
 

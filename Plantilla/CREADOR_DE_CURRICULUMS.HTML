@@ -132,12 +132,13 @@
 </form>
 
 
-<form class="formulario" method="POST">
+<form class="formulario" method="POST" enctype="multipart/form-data">
     <div class="Otros-Datos">
   <input type="hidden" name="Nuevo_flyer" value="Nuevo_flyer">
   {% csrf_token %}
   <p>Agrega los Links de tus diseños</p>
   <input type="text" name="Flyer"  placeholder="Agrega el Link tus flyers">
+  <input type="file" name="FlyerAgregarI">
   <button type="submit" class="myButton" name="button">Agregar</button>
     </div>
 </form>
@@ -153,12 +154,13 @@
     </div>
 </form>
 {% include "PaginasWeb/PaginasWeb_B.html" %}
-<form class="formulario" method="POST">
+<form class="formulario" method="POST"  enctype="multipart/form-data">
     <div class="Otros-Datos">
   <input type="hidden" name="Nuevo_Diploma" value="Nuevo_Diploma">
   {% csrf_token %}
   <p>Agrega los Links de tus diplomas</p>
   <input type="text" name="Diploma"  placeholder="Agrega el Link tus diplomas">
+  <input type="file" name="DiplomaAgregarI">
   <button type="submit" class="myButton" name="button">Agregar</button>
     </div>
 </form>

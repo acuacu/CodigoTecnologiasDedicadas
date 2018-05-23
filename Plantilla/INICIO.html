@@ -11,7 +11,7 @@ Inicio-Tecnologias-Dedicadas
     <h1>Hola Usuario</h1><br>
     <h3>Comienza a diseñar tu currículum vitae digital.</h3>
     <a href="/Usuario">Comiezo</a><br>
-    <h2>Curriculums:  {% for ContadorCurriculum in ContadorCurriculum %}   {{ ContadorCurriculum.contadorCurriculum }}   {% endfor %} </h2>
+    <h2>Currículums:  {% for ContadorCurriculum in ContadorCurriculum %}   {{ ContadorCurriculum.contadorCurriculum }}   {% endfor %} </h2>
   </div>
   <div class="contenedor-menu">
 
@@ -211,18 +211,9 @@ Inicio-Tecnologias-Dedicadas
 
 </div>
 
+
 <div class="muestrari1">
   <h1 class="cetro">Usuarios destacados en TECNOLOGÍAS DEDICADAS</h1>
-      <div class="pre-footer">
-      <div class="buscador">
-        <div class="box">
-          <div class="container-1">
-              <span class="icon icon-briefcase-1 "><i class="fa fa-search"></i></span>
-              <input type="search" id="search" placeholder="Nombre de Usuario..." />
-          </div>
-        </div>
-      </div>
-      </div>
       {% for destacados in destacados %}
       <div class="cont-logro">
 
@@ -252,27 +243,23 @@ Inicio-Tecnologias-Dedicadas
         <p>  &nbsp; {{ destacados.DiasInscripto }}</p>
     </div>
     {% endfor %}
-  <!--  <div class="cont-logro">
-        <div class="usuario"></div>
-        <h2>Tecnologias Dedicadas</h2><br>
-        <p>Walterdaniel.backend!@gmail.com</p><br>
-        <div class="logro">
-            <div class="para"></div>
-        </div>
-        &nbsp; 04/10/2017
-    </div>
-
-    <div class="cont-logro">
-        <div class="usuario"></div>
-        <h2>Tecnologias Dedicadas</h2><br>
-        <p>Walterdaniel.backend!@gmail.com</p><br>
-        <div class="logro">
-            <div class="para"></div>
-        </div>
-        &nbsp; 04/10/2017
-    </div>-->
 </div>
-<!--<img src="https://producto1.000webhostapp.com/simplesdetalles.jpg" alt="">-->
+
+<!--
+<div class="pre-footer">
+  <div class="buscador">
+    <form class="box" autocomplete="off">
+      <div class="container-1 autocomplete">
+          <span class="icon icon-briefcase-1 "><i class="fa fa-search"></i></span>
+          <input type="search" id="search" placeholder="Nombre de Usuario..." />
+      </div>
+    </form>
+  </div>
+    <div class="contenedor-Resultadobusqueda">
+
+  </div>
+</div>
+-->
 
  <style media="screen">
 .alinear-texto>h1{

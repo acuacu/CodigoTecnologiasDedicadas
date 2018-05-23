@@ -96,8 +96,13 @@ class Curriculum(models.Model):
 
 def generate_path_flyer(instance, filename):
     usuario = str(instance.CuentaDelUsuario)
+    for i in range(50):
+        filename =  str(i) + ".jpg"
+        basedir = os.path.join('static/media/'+ usuario +'/flyers/',filename)
+        if not os.path.isfile(basedir):
+            return os.path.join(usuario +'/flyers/', filename)
 
-    return os.path.join(usuario +'/flyers/', filename)
+
 
 
 class Flyers(models.Model):
@@ -107,10 +112,16 @@ class Flyers(models.Model):
     flyers = models.ImageField(upload_to=generate_path_flyer, null=True, blank=True)
 
 
+
+
+
 def generate_path_diploma(instance, filename):
     usuario = str(instance.CuentaDelUsuario)
-
-    return os.path.join(usuario +'/diplomas/', filename)
+    for i in range(50):
+        filename =  str(i) + ".jpg"
+        basedir = os.path.join('static/media/'+ usuario +'/diplomas/',filename)
+        if not os.path.isfile(basedir):
+            return os.path.join(usuario +'/diplomas/', filename)
 
 
 class Diplomas(models.Model):

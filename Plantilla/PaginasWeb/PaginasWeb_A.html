@@ -2,17 +2,26 @@
 <div class="datos">
   {% if Web %}<h3>Mis proyectos Web</h3>{% endif %}
 </div>
-{% for Web in Web %}
+
 <div class="content-Web">
-  <div class="Web">
-     <img src="{{ Web.link }}" alt="">
-   </div>
-</div>
+{% for Web in Web %}
+  <iframe src="{{ Web.link }}" scrolling="yes">
+      <p>Su navegador no soporta iframes.</p>
+    </iframe>
 {% endfor %}
+</div>
+
 <style media="screen">
   .content-Web{
     width: 90%;
     margin-left: 5%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+        margin-bottom: 50px;
+  }
+  .content-Web>iframe{
+    width: 25%;
+    margin-left: 6.25%;
     float: left;
     background-color: rgb(255, 255, 255);
   }
@@ -24,9 +33,9 @@
     margin: 2%;
     background-color: rgb(255, 255, 255);
   }
-  .Web>img{
+  .Web>iframe{
+    overflow: scroll;
     width: 100%;
     float: left;
-    border: 2px solid rgb(70, 173, 191);
   }
 </style>
